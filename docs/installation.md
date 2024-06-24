@@ -63,8 +63,8 @@ git clone --recurse-submodules https://github.com/friendsofstrandseq/mosaicatche
 # Initialize Git LFS in the main repository
 git lfs install
 
-# Initialize and pull LFS objects in each submodule
-git submodule foreach --recursive 'git lfs pull'
+# In each submodule, pull from plain git, initialise and pull LFS objects
+git submodule foreach --recursive 'git pull origin main && git lfs pull'
 ```
 
 !!! warning "Git LFS is required to download the large files in the repository."
