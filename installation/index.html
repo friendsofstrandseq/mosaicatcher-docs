@@ -584,13 +584,13 @@ pip<span class="w"> </span>install<span class="w"> </span><span class="nv">snake
 </div>
 <h3 id="2-clone-the-repository-and-its-submodules">2. Clone the repository and its submodules</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Clone the repository and its submodules</span>
-git<span class="w"> </span>clone<span class="w"> </span>--recurse-submodules<span class="w"> </span>https://github.com/friendsofstrandseq/ashleys-qc-pipeline.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>ashleys-qc-pipeline
+git<span class="w"> </span>clone<span class="w"> </span>--recurse-submodules<span class="w"> </span>https://github.com/friendsofstrandseq/mosaicatcher-pipeline.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>mosaicatcher-pipeline
 
 <span class="c1"># Initialize Git LFS in the main repository</span>
 git<span class="w"> </span>lfs<span class="w"> </span>install
 
 <span class="c1"># Initialize and pull LFS objects in each submodule</span>
-git<span class="w"> </span>submodule<span class="w"> </span>foreach<span class="w"> </span>--recursive<span class="w"> </span><span class="s1">&#39;git lfs install &amp;&amp; git lfs pull&#39;</span>
+git<span class="w"> </span>submodule<span class="w"> </span>foreach<span class="w"> </span>--recursive<span class="w"> </span><span class="s1">&#39;git lfs pull&#39;</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Git LFS is required to download the large files in the repository.</p>
@@ -606,9 +606,9 @@ git<span class="w"> </span>submodule<span class="w"> </span>foreach<span class="
 <li>Jump to a new version (for example 2.3.0) &amp; pull code:</li>
 </ul>
 <p><code>git checkout 2.3.0 &amp;&amp; git pull</code></p>
-<p>Then, to initiate or update git snakemake_profiles submodule:</p>
+<p>Then, to initiate or update git submodules:</p>
 <p><code>git submodule update --remote --recursive</code></p>
-<p>And to pull the latest version of the submodule:</p>
+<p>And to pull the latest version of the submodules:</p>
 <p><code>git submodule foreach --recursive 'git lfs pull'</code></p>
 
 
