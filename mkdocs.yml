@@ -1,12 +1,25 @@
 site_name: MosaiCatcher documentation
 site_description: A Snakemake-based workflow for quality control and detection of SV in Strand-Seq sequencing data
-theme: material
-# palette:
-#   primary: black
-#   accent: black
+theme: 
+  name: material
+  features:
+    - navigation.sections
+  palette:
+    - scheme: default
+      primary: white
+      accent: white
 nav:
   - Home: index.md
-  - Overview: overview.md
   - Installation: installation.md
   - Usage: usage.md
+  - Parameters: parameters.md
+  - Reproduce publication results: publication.md
+  - Outputs: outputs.md
   - Contributing: contributing.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
