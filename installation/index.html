@@ -589,8 +589,8 @@ git<span class="w"> </span>clone<span class="w"> </span>--recurse-submodules<spa
 <span class="c1"># Initialize Git LFS in the main repository</span>
 git<span class="w"> </span>lfs<span class="w"> </span>install
 
-<span class="c1"># Initialize and pull LFS objects in each submodule</span>
-git<span class="w"> </span>submodule<span class="w"> </span>foreach<span class="w"> </span>--recursive<span class="w"> </span><span class="s1">&#39;git lfs pull&#39;</span>
+<span class="c1"># In each submodule, pull from plain git, initialise and pull LFS objects</span>
+git<span class="w"> </span>submodule<span class="w"> </span>foreach<span class="w"> </span>--recursive<span class="w"> </span><span class="s1">&#39;git pull origin main &amp;&amp; git lfs pull&#39;</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Git LFS is required to download the large files in the repository.</p>
