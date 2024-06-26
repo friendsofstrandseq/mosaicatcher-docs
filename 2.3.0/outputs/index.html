@@ -1,0 +1,1514 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Snakemake-based workflow for quality control and detection of SV in Strand-Seq sequencing data">
+      
+      
+      
+      
+        <link rel="prev" href="../publication/">
+      
+      
+        <link rel="next" href="../contributing/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Outputs - MosaiCatcher documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="white">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#outputs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MosaiCatcher documentation" class="md-header__button md-logo" aria-label="MosaiCatcher documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MosaiCatcher documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Outputs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="white"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MosaiCatcher documentation" class="md-nav__button md-logo" aria-label="MosaiCatcher documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    MosaiCatcher documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reproduce publication results
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Outputs
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Outputs
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#plots-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plots folder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plots folder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mosaic-count-reads-density-across-bins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mosaic count - reads density across bins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sv-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      SV calls
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sv-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      SV consistency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sv-clustering" class="md-nav__link">
+    <span class="md-ellipsis">
+      SV clustering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genome-browsing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Genome browsing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Genome browsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ucsc-genome-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      UCSC genome browser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#igv" class="md-nav__link">
+    <span class="md-ellipsis">
+      IGV
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sctrip-multiplot-marco-cosenza" class="md-nav__link">
+    <span class="md-ellipsis">
+      scTRIP multiplot (Marco Cosenza)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Statistics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raw-sv-calls-tab-seperated-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raw SV calls (tab-seperated file)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mosaic-count-plots-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mosaic count plots examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mosaic count plots examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#high-quality-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-quality example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-quality-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low-quality examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Low-quality examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#under-brdu-incorporation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Under-BrdU incorporation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#over-brdu-incorporation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Over-BrdU incorporation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-contamination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background contamination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-cell-sequenced-instead-of-single" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple cell sequenced instead of single
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-cell-sequenced" class="md-nav__link">
+    <span class="md-ellipsis">
+      No cell sequenced
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#over-brdu-incorporation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Over-BrdU incorporation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-contamination_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background contamination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-cell-sequenced-instead-of-single_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple cell sequenced instead of single
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-cell-sequenced_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      No cell sequenced
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#plots-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plots folder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plots folder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mosaic-count-reads-density-across-bins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mosaic count - reads density across bins
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sv-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      SV calls
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sv-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      SV consistency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sv-clustering" class="md-nav__link">
+    <span class="md-ellipsis">
+      SV clustering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genome-browsing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Genome browsing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Genome browsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ucsc-genome-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      UCSC genome browser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#igv" class="md-nav__link">
+    <span class="md-ellipsis">
+      IGV
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sctrip-multiplot-marco-cosenza" class="md-nav__link">
+    <span class="md-ellipsis">
+      scTRIP multiplot (Marco Cosenza)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Statistics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raw-sv-calls-tab-seperated-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raw SV calls (tab-seperated file)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mosaic-count-plots-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mosaic count plots examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mosaic count plots examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#high-quality-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-quality example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-quality-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low-quality examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Low-quality examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#under-brdu-incorporation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Under-BrdU incorporation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#over-brdu-incorporation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Over-BrdU incorporation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-contamination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background contamination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-cell-sequenced-instead-of-single" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple cell sequenced instead of single
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-cell-sequenced" class="md-nav__link">
+    <span class="md-ellipsis">
+      No cell sequenced
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#over-brdu-incorporation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Over-BrdU incorporation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-contamination_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background contamination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-cell-sequenced-instead-of-single_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple cell sequenced instead of single
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-cell-sequenced_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      No cell sequenced
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="outputs">Outputs</h1>
+<p>The files listed below will be created in the selected results directory (<code>output_location</code> parameter). All paths are relative to the top-level results directory.</p>
+<h2 id="plots-folder">Plots folder</h2>
+<h3 id="mosaic-count-reads-density-across-bins">Mosaic count - reads density across bins</h3>
+<hr />
+<p>File path: <code>&lt;OUTPUT_FOLDER&gt;/&lt;SAMPLE&gt;/plots/counts/CountComplete.pdf</code></p>
+<p>Report category: <code>Mosaic counts</code></p>
+<hr />
+<p>The plots present in this file will allow you to visualize both global statistics at the sample level
+but also individual Strand-Seq karyotypes at the cell level.</p>
+<p>The first page of the pdf file shows the statistics of the analysis result, such
+as the distribution of total number of reads per cell, duplication rate, or excluded bins per chromosomes.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/stats.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>Global statistics - Sample level</em></td>
+</tr>
+</tbody>
+</table>
+<p>Afterwards, every pages show the overview of binning count result of each of the single-cells as presented below. The depth of Crick reads are depicted in the green color in the right side, and the depth of Watson reads are depicted in the orange color in the left side of each chromosome lines. HMM automatically defines the WW/WC/CC status according the reads distribution (yellow background: WC, green background: CC, orange background: WW).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/correct.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>Strand-seq karyotype visualisation</em></td>
+</tr>
+</tbody>
+</table>
+<p><em>Strand-seq karyotype visualisation based on reads counting according defined window (here 100kb). Additionnal statistics are also presented in the upper part of the figure.</em></p>
+<p>Examples of good-quality and low-quality cells are presented <a href="../mosaic_count/">here</a>.</p>
+<h3 id="sv-calls">SV calls</h3>
+<hr />
+<p>File path: <code>&lt;OUTPUT_FOLDER&gt;/plots/&lt;SAMPLE&gt;/sv_calls/&lt;METHOD&gt;/&lt;CHR&gt;.pdf</code></p>
+<p>Report category: <code>SV Calls</code></p>
+<hr />
+<p>The SV calls plots allow to identify and analyse at the single-cell level, the SV detected in the pipeline.</p>
+<p>SV calls plot correspond to chromosome-wise plots summarizing all informations computed during the pipeline (count binning = orange/green core signal, grey/white background: mosaic segments, bottom green/yellow/orange line: W/C state, additional colors: SV groups).</p>
+<p>Each different file corresponds to a different chromosome and each file presents a different track for each library processed successfully during the pipeline.</p>
+<p>As two different filtering methods are currently set (stringent/lenient filtering, stringent: a SV must be present in more than 5% of the cells), two groups of files can be found:</p>
+<ul>
+<li>stringent_filterTRUE/chr<N>.pdf</li>
+<li>lenient_filterFALSE/chr<N>.pdf</li>
+</ul>
+<p>Description of the parameters used can be found in the <a href="../parameters/">parameters section here</a>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/sv_calls_new.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>SV calls</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>Here we can identify heterozygous deletions (blue) as well as heterozygous duplication (pink) on cells PE20453 and PE20458.</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sv-consistency">SV consistency</h3>
+<hr />
+<p>File path: <code>&lt;OUTPUT_FOLDER&gt;/&lt;SAMPLE&gt;/plots/sv_consistency/&lt;METHOD&gt;.consistency-barplot-&lt;byaf|bypos&gt;.pdf</code></p>
+<p>Report category: <code>SV Consistency</code></p>
+<hr />
+<p>SV consistency plots correspond to barplots representing SV events (rows) according their frequency across cells and their class (del, dup, inv, ...).</p>
+<p>These plots are complentary to the other outputs available and are presented either sorted by Variant Allele Fraction (VAF) or by position.</p>
+<p>Like SV calls and SV clustering plots, SV consistency are also presented regarding the two filtering methods (stringent/lenient filtering), two groups of files can be found:</p>
+<ul>
+<li>stringent_filterTRUE.<byaf|bypos>.pdf</li>
+<li>lenient_filterFALSE.<byaf|bypos>.pdf</li>
+</ul>
+<p>Here are some important points to better analyse these plots:</p>
+<ul>
+<li>If the VAF is close to 1, the SVs are expected to be germline variant</li>
+<li>If the VAF is below 1, the SVs are expected to be somatic variant</li>
+<li>If the SVs only detected by one cell, it can be rare SV event, or an SCE (sister chromatid exchange) event</li>
+<li>SCEs happen independently in each single cell, and unlike SVs, SCEs are not transmitted clonally to
+  daughter cells. Hence, changepoints resulting from SCEs are very unlikely to recur at the same position in &gt;1 cell of a sample</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/sv_consistency_af.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>SV consistency (position sorted)</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="sv-clustering">SV clustering</h3>
+<hr />
+<p>File path: <code>&lt;OUTPUT_FOLDER&gt;/&lt;SAMPLE&gt;/plots/sv_clustering/&lt;CELL&gt;.pdf</code></p>
+<p>Report category: <code>SV Clustering</code></p>
+<hr />
+<p>SV clustering are complementary to previously presented plots, as the heatmap representation allow user to have a complete and global representation of the SVs at the sample level.</p>
+<p>Each file is composed of two plots:</p>
+<ul>
+<li>a clustering heatmap where cells (rows) were ordered automatically using <a href="http://adn.biol.umontreal.ca/~numericalecology/Reprints/Murtagh_Legendre_J_Class_2014.pdf">Ward Hierarchical Agglomerative clustering</a> based on the number of cells presenting each SV (columns). SV are horizontally sorted by genomic position (chr1..22, X, Y)</li>
+<li>a similar heatmap (same horizontal and vertical sorting) but highlighting both SV type (dup, del, inv, ...) and SV haplotype phasing (H1/H2/Hom)</li>
+</ul>
+<p>Two types of files are accesible from the user:</p>
+<ul>
+<li>simpleCalls_llr4_poppriorsTRUE_haplotagsFALSE_gtcutoff0.05_regfactor6_filterTRUE-<chromosome|position>.pdf</li>
+<li>position: no scaling</li>
+<li>chromosome: chromosome-size scaled</li>
+</ul>
+<p>By using these heatmaps, the user can easily identify subclones based on the SV position and enrichment across cells, as presented below.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/clustering.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>1. SV clustering (SV density)</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/clustering_sv.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>2. SV clustering (SV type)</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="genome-browsing">Genome browsing</h3>
+<p>File path: <code>&lt;OUTPUT_FOLDER&gt;/&lt;SAMPLE&gt;/plots/UCSC|IGV</code></p>
+<p>You can now also generates UCSC and IGV genome-browsing ready-to-be-used files when <code>genome_browsing_files_generation=True</code>. Here is an example below:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/genome_browsing.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>(A) UCSC and (B) IGV Genome browsing using files generated by MosaiCatcher</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="ucsc-genome-browser">UCSC genome browser</h4>
+<p>To visualise your data on the UCSC genome browser, go to the <a href="https://genome.ucsc.edu/cgi-bin/hgTracks">website</a>, section <code>My Data/Custom Tracks</code>, and upload the .gz file generated by MosaiCatcher located in <code>&lt;OUTPUT_FOLDER&gt;/&lt;SAMPLE&gt;/plots/UCSC/&lt;SAMPLE&gt;.bedUCSC.gz</code>. Then click on the <code>submit</code> button, wait until the loading complete. You should see the list of tracks loaded.</p>
+<h4 id="igv">IGV</h4>
+<p>MosaiCatcher generates an XML session ready to use by IGV. Thus, files in this XML session are referenced using relative path. It's thus important to either mount the disk where is present the data on your computer, or to copy the complete <code>&lt;OUTPUT_FOLDER&gt;/&lt;SAMPLE&gt;/plots/IGV/</code> on your computer. Once this is done, open the software, click on <code>File/Open Session</code> and load the XML file present in the IGV folder. Please note that the SV calls coloring appears only once you are displaying the data at the chromosome level, not at the genome level.</p>
+<h3 id="sctrip-multiplot-marco-cosenza">scTRIP multiplot (Marco Cosenza)</h3>
+<p>From 2.2.2, it's now possible to use <a href="/docs/usage.md#sctrip-multiplot">scTRIP multiplot</a> inside MosaiCatcher. By enabling the option available in the configuration (<code>scTRIP_multiplot=True</code>), you will obtain for each chromosome of each cell able to be processed, a plot similar to below:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/scTRIP_multiplot.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>scTRIP multiplot (Watson/Crick, depth, haplotype phased and SV calls)</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="statistics">Statistics</h2>
+<hr />
+<p>File path: <code>&lt;OUTPUT_FOLDER&gt;/&lt;SAMPLE&gt;/stats/stats-merged.tsv</code></p>
+<p>Report category: <code>Stats</code></p>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Col nb</th>
+<th>Col title</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>callset</td>
+<td>mosaiclassifier SV callset filename</td>
+</tr>
+<tr>
+<td>2</td>
+<td>cell_count</td>
+<td>number of librairies processed</td>
+</tr>
+<tr>
+<td>3</td>
+<td>segments</td>
+<td>number of segments identified</td>
+</tr>
+<tr>
+<td>4</td>
+<td>total_sce</td>
+<td>total nb of sister-chromatid-exchange identified</td>
+</tr>
+<tr>
+<td>5</td>
+<td>avg_sce_per_cell</td>
+<td>average nb of sister-chromatid-exchange per cell identified</td>
+</tr>
+<tr>
+<td>6</td>
+<td>total_calls</td>
+<td>total nb of SV detected</td>
+</tr>
+<tr>
+<td>7</td>
+<td>unique_calls</td>
+<td>nb of unique SV detected</td>
+</tr>
+<tr>
+<td>8</td>
+<td>unique_calls_merged</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>complex_lengths_mb</td>
+<td>cumulative size of complex SV (Mb) detected</td>
+</tr>
+<tr>
+<td>10</td>
+<td>total_calls_complex</td>
+<td>total nb of complex SV detected</td>
+</tr>
+<tr>
+<td>11</td>
+<td>unique_calls_complex</td>
+<td>nb of unique complex SV detected</td>
+</tr>
+<tr>
+<td>12</td>
+<td>avg_sv_load_per_cell_mb</td>
+<td>average size of SV (Mb) detected per cell</td>
+</tr>
+<tr>
+<td>13</td>
+<td>avg_sv_load_per_cell_complex_mb</td>
+<td>average size of complex SV (Mb) detected per cell</td>
+</tr>
+<tr>
+<td>14</td>
+<td>calls_af0to10</td>
+<td>nb of SV calls where SV sample allelic frequency is 0 &lt; x &lt; 10%</td>
+</tr>
+<tr>
+<td>15</td>
+<td>calls_af10to80</td>
+<td>nb of SV calls where SV sample allelic frequency is 10 &lt; x &lt; 80%</td>
+</tr>
+<tr>
+<td>16</td>
+<td>calls_af80to100</td>
+<td>nb of SV calls where SV sample allelic frequency is 80 &lt; x &lt; 100%</td>
+</tr>
+<tr>
+<td>17</td>
+<td>length_sum_af0to10_mb</td>
+<td>cumulative length of SV calls where SV sample allelic frequency is 0 &lt; x &lt; 10%</td>
+</tr>
+<tr>
+<td>18</td>
+<td>length_sum_af10to80_mb</td>
+<td>cumulative length of SV calls where SV sample allelic frequency is 10 &lt; x &lt; 80%</td>
+</tr>
+<tr>
+<td>19</td>
+<td>length_sum_af80to100_mb</td>
+<td>cumulative length of SV calls where SV sample allelic frequency is 80 &lt; x &lt; 100%</td>
+</tr>
+<tr>
+<td>20</td>
+<td>calls_af0to10_complex</td>
+<td>nb of complex SV calls where SV sample allelic frequency is 0 &lt; x &lt; 10%</td>
+</tr>
+<tr>
+<td>21</td>
+<td>calls_af10to80_complex</td>
+<td>nb of complex SV calls where SV sample allelic frequency is 10 &lt; x &lt; 80%</td>
+</tr>
+<tr>
+<td>22</td>
+<td>calls_af80to100_complex</td>
+<td>nb of complex SV calls where SV sample allelic frequency is 80 &lt; x &lt; 100%</td>
+</tr>
+<tr>
+<td>23</td>
+<td>length_sum_af0to10_complex_mb</td>
+<td>cumulative length of complex SV calls where SV sample allelic frequency is 0 &lt; x &lt; 10%</td>
+</tr>
+<tr>
+<td>24</td>
+<td>length_sum_af10to80_complex_mb</td>
+<td>cumulative length of complex SV calls where SV sample allelic frequency is 10 &lt; x &lt; 80%</td>
+</tr>
+<tr>
+<td>25</td>
+<td>length_sum_af80to100_complex_mb</td>
+<td>cumulative length of complex SV calls where SV sample allelic frequency is 80 &lt; x &lt; 100%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="raw-sv-calls-tab-seperated-file">Raw SV calls (tab-seperated file)</h2>
+<hr />
+<p>File path: <code>&lt;OUTPUT_FOLDER&gt;/&lt;SAMPLE&gt;/mosaiclassifier/sv_calls/&lt;method&gt;.pdf</code></p>
+<hr />
+<p>Columns:</p>
+<table>
+<thead>
+<tr>
+<th>Col nb</th>
+<th>Col title</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>chrom</td>
+<td>chromosome</td>
+</tr>
+<tr>
+<td>2</td>
+<td>start</td>
+<td>chromosome start</td>
+</tr>
+<tr>
+<td>3</td>
+<td>end</td>
+<td>chromosome end</td>
+</tr>
+<tr>
+<td>4</td>
+<td>sample</td>
+<td>sample name</td>
+</tr>
+<tr>
+<td>5</td>
+<td>cell</td>
+<td>cell name</td>
+</tr>
+<tr>
+<td>6</td>
+<td>class</td>
+<td>WC/WW/CC/CW</td>
+</tr>
+<tr>
+<td>7</td>
+<td>scalar</td>
+<td>Corresponding scalar to haplotype class</td>
+</tr>
+<tr>
+<td>8</td>
+<td>num_bins</td>
+<td>number of bins overlapping SV</td>
+</tr>
+<tr>
+<td>9</td>
+<td>sv_call_name</td>
+<td>SV type corresponding to the highest likelihood ratio</td>
+</tr>
+<tr>
+<td>10</td>
+<td>sv_call_haplotype</td>
+<td>Scalar corresponding to haplotype class</td>
+</tr>
+<tr>
+<td>11</td>
+<td>sv_call_name_2nd</td>
+<td>SV type corresponding to the <strong>2nd</strong> highest likelihood ratio</td>
+</tr>
+<tr>
+<td>12</td>
+<td>sv_call_haplotype_2nd</td>
+<td>Scalar corresponding to the haplotype class of the <strong>2nd</strong> highest likelihood ratio</td>
+</tr>
+<tr>
+<td>13</td>
+<td>llr_to_ref</td>
+<td>Highest Likelihood ratio value</td>
+</tr>
+<tr>
+<td>14</td>
+<td>llr_to_2nd</td>
+<td><strong>2nd</strong> Highest Likelihood ratio value</td>
+</tr>
+<tr>
+<td>15</td>
+<td>af</td>
+<td>SV allelic frequency</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mosaic-count-plots-examples">Mosaic count plots examples</h2>
+<h3 id="high-quality-example">High-quality example</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/correct.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>High-quality example</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>High-quality example</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="low-quality-examples">Low-quality examples</h3>
+<h4 id="under-brdu-incorporation">Under-BrdU incorporation</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/under_brdu.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>Under-BrdU incorporation</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>little spikes = nascent DNA strand that were not degrade properly</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="over-brdu-incorporation">Over-BrdU incorporation</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/over_brdu.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>Over-BrdU incorporation</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>BrdU degraded both nascent and template strands</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="background-contamination">Background contamination</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/back_contamination.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>Background contamination</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>Noisy background reads make all chromosomes look WC</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="multiple-cell-sequenced-instead-of-single">Multiple cell sequenced instead of single</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/multi_cell.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>Multi cell (Positive control)</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="no-cell-sequenced">No cell sequenced</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/zero_cell.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>Zero cell (Negative control)</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>Under-BrdU incorporation</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>little spikes = nascent DNA strand that were not degrade properly</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="over-brdu-incorporation_1">Over-BrdU incorporation</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/over_brdu.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>Over-BrdU incorporation</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>BrdU degraded both nascent and template strands</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="background-contamination_1">Background contamination</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/back_contamination.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>Background contamination</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>Noisy background reads make all chromosomes look WC</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="multiple-cell-sequenced-instead-of-single_1">Multiple cell sequenced instead of single</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/multi_cell.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>Multi cell (Positive control)</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="no-cell-sequenced_1">No cell sequenced</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><img alt="summary" src="../images/plots/zero_cell.png" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><em>Zero cell (Negative control)</em></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>
