@@ -13,9 +13,9 @@
 
 ### General parameters
 
-| Parameter            | Comment                                                                                           | Default | Example             |
-| -------------------- | ------------------------------------------------------------------------------------------------- | ------- | ------------------- |
-| `email`              | Email address for completion summary                                                              | None    | None                |
+| Parameter | Comment                              | Default | Example |
+| --------- | ------------------------------------ | ------- | ------- |
+| `email`   | Email address for completion summary | None    | None    |
 
 ### Data location & Input/output options
 
@@ -33,24 +33,24 @@ table th:nth-of-type(4) {
     width: 20%;
 }
 </style>
-| Parameter       | Comment                                                | Parameter type | Default            |
-| --------------- | ------------------------------------------------------ | -------------- | ------------------ |
-| `data_location` | Path to parent folder containing samples               | String         | .tests/data_CHR17/ |
-| `samples_to_process` | If multiple plates in the data_location parent folder, specify one or a comma-sep list of samples | None    | "[SampleA,SampleB]" |
-| `publishdir`    | Path to backup location where important data is copied | String         |                    |
+| Parameter            | Comment                                                                                           | Parameter type | Default             |
+| -------------------- | ------------------------------------------------------------------------------------------------- | -------------- | ------------------- |
+| `data_location`      | Path to parent folder containing samples                                                          | String         | .tests/data_CHR17/  |
+| `samples_to_process` | If multiple plates in the data_location parent folder, specify one or a comma-sep list of samples | None           | "[SampleA,SampleB]" |
+| `publishdir`         | Path to backup location where important data is copied                                            | String         |                     |
 
 ### Ashleys-QC upstream pipeline
 
-| Parameter               | Comment                                                                                                                                                        | Parameter type | Default |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------- |
-| `input_bam_legacy`      | Mutualy exclusive with ashleys_pipeline. Will use `selected` folder to identify high-quality libraries to process                                              | Boolean        | False   |
-| `ashleys_pipeline`      | Allow to load and use [ashleys-qc-pipeline](/docs/usage.md#3c-fastq-input--preprocessing-module) snakemake preprocessing module and to start from FASTQ inputs | Boolean        | False   |
-| `ashleys_pipeline_only` | Stop the execution after ashleys-qc-pipeline submodule. Requires `ashleys_pipeline` to be True                                                                 | Boolean        | False   |
-| `ashleys_threshold`     | Threshold for Ashleys-qc binary classification                                                                                                                 | Float          | 0.5     |
-| `bypass_ashleys`          | Set all cells as high-quality (labels to 1)                                                                                         | False              |              |               |
-| `MultiQC`               | Enable or disable MultiQC analysis (includes FastQC, samtools flagstats & idxstats)                                                                            | Boolean        | False   |
-| `hand_selection`        | Enable or disable hand selection through the Jupyter Notebook                                                                                                  | Boolean        | False   |
-| `split_qc_plot`         | Enable or disable the split of QC plot into individual pages plots                                                                                             | Boolean        | False   |
+| Parameter           | Comment                                                                                                                                                        | Parameter type | Default |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------- |
+| `input_bam_legacy`  | Mutualy exclusive with ashleys_pipeline. Will use `selected` folder to identify high-quality libraries to process                                              | Boolean        | False   |
+| `ashleys_pipeline`  | Allow to load and use [ashleys-qc-pipeline](/docs/usage.md#3c-fastq-input--preprocessing-module) snakemake preprocessing module and to start from FASTQ inputs | Boolean        | False   |
+| `ashleys_threshold` | Threshold for Ashleys-qc binary classification                                                                                                                 | Float          | 0.5     |
+| `bypass_ashleys`    | Set all cells as high-quality (labels to 1)                                                                                                                    | False          |         |  |
+| `MultiQC`           | Enable or disable MultiQC analysis (includes FastQC, samtools flagstats & idxstats)                                                                            | Boolean        | False   |
+| `hand_selection`    | Enable or disable hand selection through the Jupyter Notebook                                                                                                  | Boolean        | False   |
+| `split_qc_plot`     | Enable or disable the split of QC plot into individual pages plots                                                                                             | Boolean        | False   |
+| `paired_end`        | Enable or disable the use of paired-end data                                                                                                                   | Boolean        | False   |
 
 ### Reference data & Chromosomes
 
@@ -62,11 +62,28 @@ table th:nth-of-type(4) {
 
 ### Counts configuration
 
+| Parameter           | Comment                                                                                             | Default |
+| ------------------- | --------------------------------------------------------------------------------------------------- | ------- |
+| `window`            | Window size used for binning by mosaic count (Can be of high importance regarding library coverage) | 100000  |
+| `blacklist_regions` | Enable/Disable blacklisting                                                                         | True    |
+
+### Optional modules
+
+
 | Parameter                 | Comment                                                                                                                                       | Default |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | `multistep_normalisation` | Allow to perform [multistep normalisation](/docs/usage.md#multistep-normalisation) including GC correction for visualization (Marco Cosenza). | False   |
-| `window`                  | Window size used for binning by mosaic count (Can be of high importance regarding library coverage)                                           | 100000  |
-| `blacklist_regions`       | Enable/Disable blacklisting                                                                                                                   | True    |
+| `breakpointR`             | Enable breakpointR module to compute breakpoints on Strand-Seq data (David Porubsky).                                                         | False   |
+
+### Targeted execution
+
+| Parameter               | Comment                                                                                        | Default |
+| ----------------------- | ---------------------------------------------------------------------------------------------- | ------- |
+| `ashleys_pipeline_only` | Stop the execution after ashleys-qc-pipeline submodule. Requires `ashleys_pipeline` to be True | Boolean | False |
+| `breakpointR_only`      | Stop the execution after breakpointR submodule. Requires `breakpointR` to be True              | False   |
+| `whatshap_only`         | Stop the execution after whatshap submodule (haplotagging of BAM files).                       | False   |
+
+
 
 ### SV calling parameters
 
