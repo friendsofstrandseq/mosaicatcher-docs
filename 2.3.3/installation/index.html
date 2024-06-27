@@ -591,12 +591,8 @@ pip<span class="w"> </span>install<span class="w"> </span><span class="nv">snake
 git<span class="w"> </span>clone<span class="w"> </span>--recurse-submodules<span class="w"> </span>https://github.com/friendsofstrandseq/mosaicatcher-pipeline.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>mosaicatcher-pipeline
 
 <span class="c1"># In each submodule, pull from plain git, initialise and pull LFS objects</span>
-git<span class="w"> </span>submodule<span class="w"> </span>foreach<span class="w"> </span>--recursive<span class="w"> </span><span class="s1">&#39;git pull origin main&#39;</span>
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--remote<span class="w"> </span>--force<span class="w"> </span>--recursive
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Git LFS is required to download the large files in the repository.</p>
-<p>If git lfs is not available by default and you obtain this error <code>git: 'lfs' is not a git command. See 'git --help'</code>, please load or install git lfs. (EMBL users: please use <code>module load git-lfs/3.2.0</code>)</p>
-</div>
 <h2 id="pipeline-update-procedure">Pipeline update procedure</h2>
 <p>If you already use a previous version of mosaicatcher-pipeline, here is a short procedure to update it:</p>
 <ul>
