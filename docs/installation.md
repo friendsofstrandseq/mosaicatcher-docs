@@ -61,13 +61,8 @@ pip install snakemake==7.32.4
 git clone --recurse-submodules https://github.com/friendsofstrandseq/mosaicatcher-pipeline.git && cd mosaicatcher-pipeline
 
 # In each submodule, pull from plain git, initialise and pull LFS objects
-git submodule foreach --recursive 'git pull origin main'
-```
-
-!!! warning "Git LFS is required to download the large files in the repository."
-
-    If git lfs is not available by default and you obtain this error `git: 'lfs' is not a git command. See 'git --help'`, please load or install git lfs. (EMBL users: please use `module load git-lfs/3.2.0`)
-
+git submodule update --init --remote --force --recursive
+``` 
 
 
 
