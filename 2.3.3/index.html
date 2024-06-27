@@ -289,7 +289,7 @@
         <li class="md-nav__item">
   <a href="#ashleys-qc-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
-      Ashleys-QC Pipeline
+      🧹 Ashleys-QC Pipeline
     </span>
   </a>
   
@@ -298,7 +298,7 @@
         <li class="md-nav__item">
   <a href="#mosaicatcher" class="md-nav__link">
     <span class="md-ellipsis">
-      MosaiCatcher
+      🧩 MosaiCatcher
     </span>
   </a>
   
@@ -539,7 +539,7 @@
         <li class="md-nav__item">
   <a href="#ashleys-qc-pipeline" class="md-nav__link">
     <span class="md-ellipsis">
-      Ashleys-QC Pipeline
+      🧹 Ashleys-QC Pipeline
     </span>
   </a>
   
@@ -548,7 +548,7 @@
         <li class="md-nav__item">
   <a href="#mosaicatcher" class="md-nav__link">
     <span class="md-ellipsis">
-      MosaiCatcher
+      🧩 MosaiCatcher
     </span>
   </a>
   
@@ -651,12 +651,7 @@
 
 
 <h1 id="overview">Overview</h1>
-<p><img alt="summary" src="images/figure_pipeline.png" /></p>
-<div class="admonition note">
-<p class="admonition-title">ashleys-qc-pipeline &amp; mosaicatcher-pipeline dependencies</p>
-<p>From 2.2.0, you don't need to clone both <a href="https://github.com/friendsofstrandseq/ashleys-qc-pipeline">ashleys-qc-pipeline preprocessing module</a> and <a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline">mosaicatcher-pipeline</a>. By using <code>ashleys_pipeline_only=True</code> combined with <code>ashleys_pipeline=True</code> in the configuration of MosaiCatcher, this will stop the execution after the generation of the files related to ashleys-qc-pipeline. This allow you to use a single pipeline, repository and container and limit the potential conflicts by processing the same folder (data_location) by different repositories and set of files (including the workflow/data/ref_genomes references files).</p>
-</div>
-<h2 id="ashleys-qc-pipeline">Ashleys-QC Pipeline</h2>
+<h2 id="ashleys-qc-pipeline">🧹 Ashleys-QC Pipeline</h2>
 <p>This workflow uses <a href="https://github.com/snakemake/snakemake">Snakemake</a> perform Quality Control analysis on Strand-Seq single-cell
 sequencing data. The starting point are single-cell FASTQ files from Strand-seq experiments and the final output produced is a folder with clean selected BAM files. The pipeline can identify automatically high-quality libraries through ML-based analysis tool <a href="https://github.com/friendsofstrandseq/ashleys-qc">ashleys-qc</a>. Thus, the workflow goes through the following steps:</p>
 <ol>
@@ -665,7 +660,7 @@ sequencing data. The starting point are single-cell FASTQ files from Strand-seq 
 <li>Sorting, Deduplicating and Indexing of BAM files through <a href="http://www.htslib.org/">Samtools</a> &amp; <a href="https://lomereiter.github.io/sambamba/docs/sambamba-view.html">sambaba</a></li>
 <li>Generating features and use <a href="https://github.com/friendsofstrandseq/ashleys-qc">ashleys-qc</a> model to identify high-quality cells</li>
 </ol>
-<h2 id="mosaicatcher">MosaiCatcher</h2>
+<h2 id="mosaicatcher">🧩 MosaiCatcher</h2>
 <p>The starting point in MosaiCatcher are single-cell
 BAM files from Strand-seq experiments and the final output are SV predictions in
 a tabular format as well as in a graphical representation. To get to this point,
@@ -679,6 +674,13 @@ the workflow goes through the following steps:</p>
 <li>Bayesian classification of segmentation to find SVs using MosaiClassifier</li>
 <li>Visualization of results using custom R plots</li>
 </ol>
+<p><a href="images/figure_pipeline.png" target="_blank">
+    <img src="images/figure_pipeline_optimised.webp" alt="summary" style="width:auto; max-width:70%; height:auto;">
+</a></p>
+<details class="note">
+<summary>Figure 1: MosaiCatcher v2 schematic representation and visualizations examples.</summary>
+<p>MosaiCatcher v2 schematic representation and visualizations examples. (A) MosaiCatcher v2 pipeline schematic representation: On the left part in dimmed orange is represented ashleys-qc-pipeline, a switchable preprocessing optional module that allows to perform standard steps of mapping, sorting, and indexing FASTQ libraries, producing quality control plots and reports as well as identifying high-quality libraries. On the right uncolored part, the MosaiCatcher core part of the pipeline is still usable as a standalone by providing Stand-Seq aligned BAM files. Green boxes correspond to data-conditional dependent execution steps (Snakemake checkpoints) that allow more flexibility and reduce issues when executing the workflow. Orange box corresponds to the multi-step normalization module. Blue box corresponds to ArbiGent mode of execution that allows SV genotyping from arbitrary segmentation. Violet box corresponds to scNOVA SV function analysis mode of execution. Dashed boxes correspond to optional modules. *: Strand-seq QC plot is only produced here if ashleys-qc pipeline is not enabled (B) quality control Strand-seq karyotype visualization based on read counting according to a defined window (here 200 kb). A karyotype plot is available for each single-cell sequenced. Additional statistics are also presented in the upper part of the figure. These plots allow the users to perform QC to assess sequencing integrity. (C) SV call clustering heatmap and chromosome-wise visualizations. The clustering heatmap on the left generates a global SV distribution representation of the sample. Each SV call is represented as a column and each library as a row. Top row annotation corresponds to chromosomes and individual heatmap cell color corresponds to a specific type of haplotype-phased SV defined in the legend. The chromosome-wise representation on the right side of the subfigure summarizes, for a given chromosome (here chr10), the different layers of information computed during the pipeline: binned read counts, joint and cell segmentation, and phased SV calls. (D) Differential nucleosome occupancy heatmap representation: this heatmap computed with the scNOVA downstream module exemplifies gene-body-based differential nucleosome occupancy profiles (Jeong et al. 2023).</p>
+</details>
 <h2 id="roadmap">📆 Roadmap</h2>
 <h3 id="technical-related-features">Technical-related features</h3>
 <ul class="task-list">
@@ -694,6 +696,7 @@ the workflow goes through the following steps:</p>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Report captions update (<a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline/releases/tag/1.8.5">1.8.5</a>)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Clustering plot (heatmap) &amp; SV calls plot update (<a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline/releases/tag/1.8.6">1.8.6</a>)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <a href="/docs/usage.md#usage"><code>ashleys_pipeline_only</code> parameter</a>: using mosaicatcher-pipeline, trigger ashleys-qc-pipeline only and will stop after the generation of the counts, ashleys predictions &amp; plots to allow the user manual reviewing/selection of the cells to be processed (<a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline/releases/tag/2.2.0">2.2.0</a>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Target alternative execution ending: <code>breakpointr_only</code> parameter to stop the execution after breakpointR ; <code>whatshap_only</code> parameter to stop the execution after whatshap (<a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline/releases/tag/2.3.3">2.3.3</a>)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Plotting options (enable/disable segmentation back colors)</li>
 </ul>
 <h3 id="bioinformatic-related-features">Bioinformatic-related features</h3>
@@ -711,6 +714,7 @@ the workflow goes through the following steps:</p>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> UCSC ready to use file generation including counts &amp; SV calls (<a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline/releases/tag/2.1.2">2.1.2</a>)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>blacklist_regions</code> parameter: (<a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline/releases/tag/2.2.0">2.2.0</a>)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> IGV ready to use XML session generation: (<a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline/releases/tag/2.2.2">2.2.2</a>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> BreakpointR integration through <code>breakpointr</code> parameter (<a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline/releases/tag/2.3.3">2.3.3</a>)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Pooled samples</li>
 </ul>
 <h3 id="small-issues-to-fix">Small issues to fix</h3>
