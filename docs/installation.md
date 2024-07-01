@@ -79,14 +79,10 @@ If you already use a previous version of mosaicatcher-pipeline, here is a short 
 
 `git fetch --all`
 
-- Jump to a new version (for example 2.3.0) & pull code:
+- Jump to a new version & pull code:
 
-`git checkout 2.3.0 && git pull`
+`git checkout <VERSION> && git pull`
 
 Then, to initiate or update git submodules:
 
-`git submodule update --remote --recursive`
-
-And to pull the latest version of the submodules:
-
-`git submodule foreach --recursive 'git lfs pull'`
+`git submodule update --init --remote --force --recursive`
