@@ -1,13 +1,22 @@
 site_name: MosaiCatcher documentation
 site_description: A Snakemake-based workflow for quality control and detection of SV in Strand-Seq sequencing data
-theme: 
+theme:
   name: material
   features:
     - navigation.sections
+    - header.autohide
+
   palette:
     - scheme: default
       primary: white
       accent: white
+
+  icon:
+    repo: fontawesome/brands/github
+
+repo_url: https://github.com/friendsofstrandseq/mosaicatcher-pipeline
+repo_name: friendsofstrandseq/mosaicatcher-pipeline
+
 nav:
   - Home: index.md
   - Installation: installation.md
@@ -24,6 +33,13 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 
+copyright: Copyright &copy; 2022 - 2024 Thomas Weber
+
 extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/friendsofstrandseq/mosaicatcher-pipeline
+      name: GitHub
+
   version:
     provider: mike

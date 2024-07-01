@@ -2,6 +2,11 @@
 # Installation & Update
 
 
+!!! note "ashleys-qc-pipeline & mosaicatcher-pipeline dependencies"
+
+    From 2.2.0, you don't need to clone both [ashleys-qc-pipeline preprocessing module](https://github.com/friendsofstrandseq/ashleys-qc-pipeline) and [mosaicatcher-pipeline](https://github.com/friendsofstrandseq/mosaicatcher-pipeline). By using `ashleys_pipeline_only=True` combined with `ashleys_pipeline=True` in the configuration of MosaiCatcher, this will stop the execution after the generation of the files related to ashleys-qc-pipeline. This allow you to use a single pipeline, repository and container and limit the potential conflicts by processing the same folder (data_location) by different repositories and set of files (including the workflow/data/ref_genomes references files).
+
+
 ## System requirements
 
 This workflow is meant to be run in a Unix-based operating system when using the local execution profiles (tested on Ubuntu 18.04 & CentOS 7).
