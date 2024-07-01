@@ -631,13 +631,11 @@ git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w
 </ul>
 <p><code>git fetch --all</code></p>
 <ul>
-<li>Jump to a new version (for example 2.3.0) &amp; pull code:</li>
+<li>Jump to a new version &amp; pull code:</li>
 </ul>
-<p><code>git checkout 2.3.0 &amp;&amp; git pull</code></p>
+<p><code>git checkout &lt;VERSION&gt; &amp;&amp; git pull</code></p>
 <p>Then, to initiate or update git submodules:</p>
-<p><code>git submodule update --remote --recursive</code></p>
-<p>And to pull the latest version of the submodules:</p>
-<p><code>git submodule foreach --recursive 'git lfs pull'</code></p>
+<p><code>git submodule update --init --remote --force --recursive</code></p>
 
 
 
