@@ -83,6 +83,7 @@ the workflow goes through the following steps:
 - [x] replace `input_bam_location` by `data_location` (harmonization with [ashleys-qc-pipeline](https://github.com/friendsofstrandseq/ashleys-qc-pipeline.git))
 - [x] List of commands available through list_commands parameter ([1.8.6](https://github.com/friendsofstrandseq/mosaicatcher-pipeline/releases/tag/1.8.6)
 - [x] Move pysam / SM tag comparison script to snakemake rule ([2.2.0](https://github.com/friendsofstrandseq/mosaicatcher-pipeline/releases/tag/2.2.0))
+- [x] Reference properly reference genome in IGV session script generation ([2.3.5](https://github.com/friendsofstrandseq/mosaicatcher-pipeline/releases/tag/2.3.5)
 
 ## 🛑 Troubleshooting & Current limitations
 
