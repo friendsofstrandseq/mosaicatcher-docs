@@ -65,7 +65,7 @@ pip install snakemake==7.32.4
 # Clone the repository and its submodules
 git clone --recurse-submodules https://github.com/friendsofstrandseq/mosaicatcher-pipeline.git && cd mosaicatcher-pipeline
 
-# In each submodule, pull from plain git, initialise and pull LFS objects
+# In each submodule, initialize and pull
 git submodule update --init --remote --force --recursive
 ``` 
 

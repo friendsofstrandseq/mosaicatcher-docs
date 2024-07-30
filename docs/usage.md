@@ -271,6 +271,9 @@ A generic BED file is provided in `workflow/data/arbigent/manual_segmentation.be
 
 ### scNOVA mode of execution
 
+!!! warning
+    Following Anaconda licensing issues with EMBL, scNOVA can only be executed using profiles based on singularity where the conda environment were already built.
+
 From 1.9.2, it's now possible to run [scNOVA](https://github.com/jeongdo801/scNOVA/) directly from MosaiCatcher in order to determine the nucleosome occupancy associated to the SV calls provided during MosaiCatcher execution.
 
 To do so, mosaicatcher must be executed during a first step in order to generate the SV calls and associated plots/tables required to determine subclonality.
