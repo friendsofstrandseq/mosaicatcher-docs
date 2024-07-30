@@ -1,0 +1,1207 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Snakemake-based workflow for quality control and detection of SV in Strand-Seq sequencing data">
+      
+      
+      
+      
+        <link rel="prev" href="../installation/">
+      
+      
+        <link rel="next" href="../parameters/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Usage - MosaiCatcher documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="white">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MosaiCatcher documentation" class="md-header__button md-logo" aria-label="MosaiCatcher documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MosaiCatcher documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="white"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    friendsofstrandseq/mosaicatcher-pipeline
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MosaiCatcher documentation" class="md-nav__button md-logo" aria-label="MosaiCatcher documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    MosaiCatcher documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    friendsofstrandseq/mosaicatcher-pipeline
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Get Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-pipeline-on-example-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run pipeline on example data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-on-your-own-data-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run on your own data locally
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed instructions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mosaicatcher-full-execution-with-ashleys-qc-preprocessing-module-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      MosaiCatcher full execution (with ashleys-qc preprocessing module enabled)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MosaiCatcher full execution (with ashleys-qc preprocessing module enabled)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mosaicatcher-execution-without-preprocessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      MosaiCatcher execution (without preprocessing)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MosaiCatcher execution (without preprocessing)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bam-input-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      BAM input requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directory-organisation-current-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory organisation - Current behavior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directory-organisation-old-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory organisation - Old behavior
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-execution-not-hpc-or-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local execution (not HPC or cloud):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hpc-execution-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      HPC execution (SLURM)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-report-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate report (optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modes-of-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modes of execution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arbigent-mode-of-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      ArbiGent mode of execution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ArbiGent mode of execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scnova-mode-of-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      scNOVA mode of execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multistep-normalisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multistep normalisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sctrip-multiplot" class="md-nav__link">
+    <span class="md-ellipsis">
+      scTRIP multiplot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reproduce publication results
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../outputs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outputs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Get Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-pipeline-on-example-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run pipeline on example data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-on-your-own-data-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run on your own data locally
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed instructions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mosaicatcher-full-execution-with-ashleys-qc-preprocessing-module-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      MosaiCatcher full execution (with ashleys-qc preprocessing module enabled)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MosaiCatcher full execution (with ashleys-qc preprocessing module enabled)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory structure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mosaicatcher-execution-without-preprocessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      MosaiCatcher execution (without preprocessing)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MosaiCatcher execution (without preprocessing)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bam-input-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      BAM input requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directory-organisation-current-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory organisation - Current behavior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directory-organisation-old-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory organisation - Old behavior
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-execution-not-hpc-or-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local execution (not HPC or cloud):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hpc-execution-slurm" class="md-nav__link">
+    <span class="md-ellipsis">
+      HPC execution (SLURM)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-report-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate report (optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modes-of-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modes of execution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arbigent-mode-of-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      ArbiGent mode of execution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ArbiGent mode of execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scnova-mode-of-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      scNOVA mode of execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multistep-normalisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multistep normalisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sctrip-multiplot" class="md-nav__link">
+    <span class="md-ellipsis">
+      scTRIP multiplot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="usage">Usage</h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>Please be careful of your conda/mamba setup, if you applied specific constraints/modifications to your system, this could lead to some versions discrepancies.</li>
+<li>mamba is usually preferred but might not be installed by default on a shared cluster environment</li>
+<li>You will need to verify that this conda environment is activated and provide the right snakemake before each execution (<code>which snakemake</code> command)</li>
+</ul>
+</div>
+<h2 id="get-started">Get Started</h2>
+<div class="admonition note">
+<p class="admonition-title">Note for 🇪🇺 EMBL users</p>
+<p>Use the following command for singularity-args parameter: <code>--singularity-args "-B /g,/scratch"</code></p>
+</div>
+<h3 id="run-pipeline-on-example-data">Run pipeline on example data</h3>
+<p>Run on example data on only one small chromosome (<code>&lt;disk&gt;</code> must be replaced by your disk letter/name, <code>/g</code> or <code>/scratch</code> at EMBL for example)</p>
+<div class="highlight"><pre><span></span><code>snakemake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cores<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--configfile<span class="w"> </span>.tests/config/simple_config.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile<span class="w"> </span>workflow/snakemake_profiles/mosaicatcher-pipeline/v7/local/conda_singularity/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--singularity-args<span class="w"> </span><span class="s2">&quot;-B /&lt;disk&gt;:/&lt;disk&gt;&quot;</span>
+</code></pre></div>
+<p>Then, generate a report on example data.</p>
+<div class="highlight"><pre><span></span><code>snakemake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cores<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--configfile<span class="w"> </span>.tests/config/simple_config.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile<span class="w"> </span>workflow/snakemake_profiles/mosaicatcher-pipeline/v7/local/conda_singularity/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--singularity-args<span class="w"> </span><span class="s2">&quot;-B /disk:/disk&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--report<span class="w"> </span>report.zip<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--report-stylesheet<span class="w"> </span>workflow/report/custom-stylesheet.css
+</code></pre></div>
+<h3 id="run-on-your-own-data-locally">Run on your own data locally</h3>
+<ol>
+<li>Run your own analysis <strong>locally</strong> (<code>&lt;disk&gt;</code> must be replaced by your disk letter/name, <code>/g</code> or <code>/scratch</code> at EMBL for example)</li>
+</ol>
+<div class="highlight"><pre><span></span><code>snakemake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cores<span class="w"> </span>&lt;N&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--config<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="nv">data_location</span><span class="o">=</span>&lt;PATH&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile<span class="w"> </span>workflow/snakemake_profiles/mosaicatcher-pipeline/v7/local/conda_singularity/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--singularity-args<span class="w"> </span><span class="s2">&quot;-B /&lt;disk&gt;:/&lt;disk&gt;&quot;</span>
+</code></pre></div>
+<h2 id="detailed-instructions">Detailed instructions</h2>
+<h3 id="mosaicatcher-full-execution-with-ashleys-qc-preprocessing-module-enabled">MosaiCatcher full execution (with ashleys-qc preprocessing module enabled)</h3>
+<h4 id="directory-structure">Directory structure</h4>
+<p>The ashleys-qc-pipeline takes as input Strand-Seq fastq file following the structure below:</p>
+<div class="highlight"><pre><span></span><code>Parent_folder
+<span class="p">|</span>--<span class="w"> </span>Sample_1
+<span class="p">|</span><span class="w">   </span><span class="sb">`</span>--<span class="w"> </span>fastq
+<span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>Cell_01.1.fastq.gz
+<span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>Cell_01.2.fastq.gz
+<span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>Cell_02.1.fastq.gz
+<span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>Cell_02.2.fastq.gz
+<span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>Cell_03.1.fastq.gz
+<span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>Cell_03.2.fastq.gz
+<span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>Cell_04.1.fastq.gz
+<span class="p">|</span><span class="w">       </span><span class="sb">`</span>--<span class="w"> </span>Cell_04.2.fastq.gz
+<span class="p">|</span>
+<span class="sb">`</span>--<span class="w"> </span>Sample_2
+<span class="w">    </span><span class="sb">`</span>--<span class="w"> </span>fastq
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>Cell_21.1.fastq.gz
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>Cell_21.2.fastq.gz
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>Cell_22.1.fastq.gz
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>Cell_22.2.fastq.gz
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>Cell_23.1.fastq.gz
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>Cell_23.2.fastq.gz
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>Cell_24.1.fastq.gz
+<span class="w">        </span><span class="sb">`</span>--<span class="w"> </span>Cell_24.2.fastq.gz
+</code></pre></div>
+<p>Thus, in a <code>Parent_Folder</code>, create a subdirectory <code>Parent_Folder/sampleName/</code> for each <code>sample</code>. Each Strand-seq FASTQ files of this sample need to go into the <code>fastq</code> folder and respect the following syntax: <code>&lt;CELL&gt;.&lt;1|2&gt;.fastq.gz</code>, <code>1|2</code> corresponding to the pair identifier.</p>
+<div class="admonition warning">
+<p class="admonition-title">Samples naming</p>
+<p>We advice to limit to the number of 2 the "_" characters in your file names (ashleys-qc tool will react weirdly with 3 or more "_" in the sample name)</p>
+</div>
+<h3 id="mosaicatcher-execution-without-preprocessing">MosaiCatcher execution (without preprocessing)</h3>
+<h4 id="bam-input-requirements">BAM input requirements</h4>
+<p>It is important to follow these rules for Strand-Seq single-cell BAM data</p>
+<ul>
+<li><strong>BAM file name ending by suffix: <code>.sort.mdup.bam</code></strong></li>
+<li>One BAM file per cell</li>
+<li>Sorted and indexed</li>
+<li>If BAM files are not indexed, please use a writable folder in order that the pipeline generate itself the index <code>.bai</code> files</li>
+<li>Timestamp of index files must be newer than of the BAM files</li>
+<li>Each BAM file must contain a read group (<code>@RG</code>) with a common sample name (<code>SM</code>), which must match the folder name (<code>sampleName</code> above)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Filtering of low-quality cells impossible to process</p>
+<p>From Mosaicatcher version ≥ 1.6.1, a snakemake checkpoint rule was defined (<a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline/blob/master/workflow/rules/count.smk#L91">filter_bad_cells</a>) to automatically remove from the analysis cells flagged as low-quality.</p>
+<p>The ground state to define this status (usable/not usable) is determined from column pass1 (enough coverage to process the cell) in mosaic count info file (see example below). The value of pass1 is not static and can change according the window size used (the larger the window, the higher the number of reads to retrieve in a given bin).</p>
+<p>Cells flagged as low-quality cells are listed in the following TSV file: <code>&lt;OUTPUT&gt;/cell_selection/&lt;SAMPLE&gt;/labels.tsv</code>.</p>
+</div>
+<h4 id="directory-organisation-current-behavior">Directory organisation - Current behavior</h4>
+<p>In its current flavour, MosaiCatcher requires that input data must be formatted the following way :</p>
+<div class="highlight"><pre><span></span><code>Parent_folder
+<span class="p">|</span>--<span class="w"> </span>Sample_1
+<span class="p">|</span><span class="w">   </span><span class="sb">`</span>--<span class="w"> </span>bam
+<span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>Cell_01.sort.mdup.bam
+<span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>Cell_02.sort.mdup.bam
+<span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>Cell_03.sort.mdup.bam
+<span class="p">|</span><span class="w">       </span><span class="sb">`</span>--<span class="w"> </span>Cell_04.sort.mdup.bam
+<span class="p">|</span>
+<span class="sb">`</span>--<span class="w"> </span>Sample_2
+<span class="w">    </span><span class="sb">`</span>--<span class="w"> </span>bam
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>Cell_21.sort.mdup.bam
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>Cell_22.sort.mdup.bam
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>Cell_23.sort.mdup.bam
+<span class="w">        </span><span class="sb">`</span>--<span class="w"> </span>Cell_24.sort.mdup.bam
+</code></pre></div>
+<p>In a <code>Parent_Folder</code>, create a subdirectory <code>Parent_Folder/sampleName/</code> for each <code>sample</code>. Your Strand-seq BAM files of this sample go into the following folder:</p>
+<ul>
+<li><code>bam</code> for the total set of BAM files</li>
+</ul>
+<blockquote>
+<p>Using the classic behavior, cells flagged as low-quality will only be determined based on coverage <a href="#note:-filtering-of-low-quality-cells-impossible-to-process">see Note here</a>.</p>
+</blockquote>
+<h4 id="directory-organisation-old-behavior">Directory organisation - Old behavior</h4>
+<p>Previous version of MosaiCatcher (version ≤ 1.5) needed not only a <code>all</code> directory as described above, but also a <code>selected</code> folder (now renamed <code>bam</code>), presenting only high-quality selected libraries wished to be processed for the rest of the analysis.</p>
+<p>You can still use this behavior by enabling the config parameter either by the command line: <code>=True</code> or by modifying the corresponding entry in the config/config.yaml file.</p>
+<p>Thus, in a <code>Parent_Folder</code>, create a subdirectory <code>Parent_Folder/sampleName/</code> for each <code>sample</code>. Your Strand-seq BAM files of this sample go into the following folder:</p>
+<ul>
+<li><code>all</code> for the total set of BAM files</li>
+<li><code>selected</code> for the subset of BAM files that were identified as high-quality (either by copy or symlink)</li>
+</ul>
+<p>Your <code>&lt;INPUT&gt;</code> directory should look like this:</p>
+<div class="highlight"><pre><span></span><code>Parent_folder
+<span class="p">|</span>--<span class="w"> </span>Sample_1
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>bam
+<span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>Cell_01.sort.mdup.bam
+<span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>Cell_02.sort.mdup.bam
+<span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>Cell_03.sort.mdup.bam
+<span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="sb">`</span>--<span class="w"> </span>Cell_04.sort.mdup.bam
+<span class="p">|</span><span class="w">   </span><span class="sb">`</span>--<span class="w"> </span>selected
+<span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>Cell_01.sort.mdup.bam
+<span class="p">|</span><span class="w">       </span><span class="sb">`</span>--<span class="w"> </span>Cell_04.sort.mdup.bam
+<span class="p">|</span>
+<span class="sb">`</span>--<span class="w"> </span>Sample_2
+<span class="w">    </span><span class="p">|</span>--<span class="w"> </span>bam
+<span class="w">    </span><span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>Cell_01.sort.mdup.bam
+<span class="w">    </span><span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>Cell_02.sort.mdup.bam
+<span class="w">    </span><span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>Cell_03.sort.mdup.bam
+<span class="w">    </span><span class="p">|</span><span class="w">   </span><span class="sb">`</span>--<span class="w"> </span>Cell_04.sort.mdup.bam
+<span class="w">    </span><span class="sb">`</span>--<span class="w"> </span>selected
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>Cell_03.sort.mdup.bam
+<span class="w">        </span><span class="sb">`</span>--<span class="w"> </span>Cell_04.sort.mdup.bam
+</code></pre></div>
+<blockquote>
+<p>Using the <code>input_bam_legacy</code> parameter, cells flagged as low-quality will be determined both based on their presence in the <code>selected</code> folder presented above and on coverage <a href="#note:-filtering-of-low-quality-cells-impossible-to-process">see Note here</a>.</p>
+</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul>
+<li>Using the <code>input_bam_legacy</code> parameter, only <strong>intersection</strong> between cells present in the selected folder and with enough coverage will be kept. Example: if a library is present in the selected folder but present a low coverage <a href="#note:-filtering-of-low-quality-cells-impossible-to-process">see Note here</a>, this will not be processed.</li>
+<li><code>ashleys_pipeline=True</code> and <code>input_bam_legacy=True</code> are mutually exclusive</li>
+<li>We advice to limit to the number of 2 the "<em>" characters in your file names (Ashleys-qc ML tool will react weidly with more than 3 "</em>")</li>
+</ul>
+</div>
+<p>The <code>--profile</code> argument will define whether you want to execute the workflow locally on your laptop/desktop (<code>workflow/snakemake_profiles/mosaicatcher-pipeline/v7/local/conda_singularity//</code>), or if you want to run it on HPC. A generic slurm profile is available (<code>workflow/snakemake_profiles/mosaicatcher-pipeline/v7/HPC/slurm_generic/</code>).</p>
+<h3 id="local-execution-not-hpc-or-cloud">Local execution (not HPC or cloud):</h3>
+<div class="highlight"><pre><span></span><code>snakemake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cores<span class="w"> </span>&lt;N&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--config<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="nv">data_location</span><span class="o">=</span>&lt;DATA_FOLDER&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile<span class="w"> </span>workflow/snakemake_profiles/mosaicatcher-pipeline/v7/local/conda_singularity/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--singularity-args<span class="w"> </span><span class="s2">&quot;-B /&lt;disk&gt;:/&lt;disk&gt;&quot;</span>
+</code></pre></div>
+<h3 id="hpc-execution-slurm">HPC execution (SLURM)</h3>
+<p>HPC execution (require first that you modify the workflow/snakemake_profiles/mosaicatcher-pipeline/HPC/slurm_generic/config.yaml for your own cluster)</p>
+<div class="highlight"><pre><span></span><code>snakemake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--config<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="nv">data_location</span><span class="o">=</span>&lt;DATA_FOLDER&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile<span class="w"> </span>workflow/snakemake_profiles/mosaicatcher-pipeline/v7/HPC/slurm_generic/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--singularity-args<span class="w"> </span><span class="s2">&quot;-B /&lt;disk&gt;:/&lt;disk&gt;&quot;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Current strategy to solve HPC job Out-of-Memory (OOM)</p>
+<p>Workflow HPC execution usually needs to deal with out of memory (OOM) errors, out of disk space, abnormal paths or missing parameters for the scheduler. To deal with OOM, we are currently using snakemake restart feature that allows to automatically double allocated memory to the job at each attempt (limited to 6 for the moment). Then, if a job fails to run with the default 1GB of memory allocated, it will be automatically restarted tith 2GB at the 2nd attempt, 4GB at the 3rd, etc.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">EMBL HPC execution</p>
+<p>In the EMBL HPC execution profile, disks binding points already set in the snakemake profile
+<code>--profile workflow/snakemake_profiles/mosaicatcher-pipeline/v7/HPC/slurm_EMBL/</code></p>
+</div>
+<h3 id="generate-report-optional">Generate report (optional)</h3>
+<p>Optionally, it's also possible to generate a static interactive HTML report to explore the different plots produced by MosaiCatcher, using the same command as before and just adding at the end the following:
+<code>--report &lt;report&gt;.zip --report-stylesheet workflow/report/custom-stylesheet.css</code>, which correspond to the following complete command:</p>
+<div class="highlight"><pre><span></span><code>snakemake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--config<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="nv">data_location</span><span class="o">=</span>&lt;INPUT_FOLDER&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--singularity-args<span class="w"> </span><span class="s2">&quot;-B /&lt;mounting_point&gt;:/&lt;mounting_point&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile<span class="w"> </span>workflow/snakemake_profiles/slurm_generic/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--report<span class="w"> </span>&lt;report&gt;.zip<span class="w"> </span>--report-stylesheet<span class="w"> </span>workflow/report/custom-stylesheet.css
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The zip file produced can be heavy (~1GB for 24 HGSVC samples ; 2000 cells) if multiple samples are processed in parallel in the same output folder.</p>
+</div>
+<h2 id="modes-of-execution">Modes of execution</h2>
+<h2 id="arbigent-mode-of-execution">ArbiGent mode of execution</h2>
+<p>From 1.9.0, it's now possible to run MosaiCatcher in order to genotype a given list of positions specified in a bed file. To do so, <code>arbigent</code> config parameter need to be set to <code>True</code>.
+Thus, an alternative branch of the pipeline will be executed instead of the classic one, targetting results produced by ArbiGent.</p>
+<div class="highlight"><pre><span></span><code>snakemake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cores<span class="w"> </span>&lt;N&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--config<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="nv">data_location</span><span class="o">=</span>&lt;INPUT_DATA_FOLDER&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="nv">arbigent</span><span class="o">=</span>True<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile<span class="w"> </span>workflow/snakemake_profiles/local/conda_singularity/
+</code></pre></div>
+<p>A generic BED file is provided in <code>workflow/data/arbigent/manual_segmentation.bed</code>. A custom BED file can be specified by modifying <code>arbigent_bed_file</code> config parameter to the path of your choice.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you modify the chromosome list to be processed (remove chrX &amp; chrY for instance), a dedicated rule will extract only from the BED file, the rows matching the list of chromosomes to be analysed.</p>
+</div>
+<h3 id="scnova-mode-of-execution">scNOVA mode of execution</h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Following Anaconda licensing issues with EMBL, scNOVA can only be executed using profiles based on singularity where the conda environment were already built.</p>
+</div>
+<p>From 1.9.2, it's now possible to run <a href="https://github.com/jeongdo801/scNOVA/">scNOVA</a> directly from MosaiCatcher in order to determine the nucleosome occupancy associated to the SV calls provided during MosaiCatcher execution.</p>
+<p>To do so, mosaicatcher must be executed during a first step in order to generate the SV calls and associated plots/tables required to determine subclonality.</p>
+<p>Once the subclonality was determined, a table respecting the following template must be provided at this path <code>&lt;DATA_LOCATION&gt;/&lt;SAMPLE&gt;/scNOVA_input_user/input_subclonality.txt</code> where the different clones are named <code>clone&lt;N&gt;</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Subclonality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TALL3x1_DEA5_PE20406</td>
+<td>clone2</td>
+</tr>
+<tr>
+<td>TALL3x1_DEA5_PE20414</td>
+<td>clone2</td>
+</tr>
+<tr>
+<td>TALL3x1_DEA5_PE20415</td>
+<td>clone1</td>
+</tr>
+<tr>
+<td>TALL3x1_DEA5_PE20416</td>
+<td>clone1</td>
+</tr>
+<tr>
+<td>TALL3x1_DEA5_PE20417</td>
+<td>clone1</td>
+</tr>
+<tr>
+<td>TALL3x1_DEA5_PE20418</td>
+<td>clone1</td>
+</tr>
+<tr>
+<td>TALL3x1_DEA5_PE20419</td>
+<td>clone1</td>
+</tr>
+<tr>
+<td>TALL3x1_DEA5_PE20421</td>
+<td>clone1</td>
+</tr>
+<tr>
+<td>TALL3x1_DEA5_PE20422</td>
+<td>clone1</td>
+</tr>
+</tbody>
+</table>
+<p>Once done, you can run the exact same command as previously and set <code>scNOVA</code> config parameter to <code>True</code> like the following:</p>
+<div class="highlight"><pre><span></span><code>snakemake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cores<span class="w"> </span>&lt;N&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--config<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="nv">data_location</span><span class="o">=</span>&lt;INPUT_DATA_FOLDER&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="nv">scNOVA</span><span class="o">=</span>True<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile<span class="w"> </span>workflow/snakemake_profiles/local/conda_singularity/
+</code></pre></div>
+<h3 id="multistep-normalisation">Multistep normalisation</h3>
+<p>From 2.1.0, it's now possible to use multistep normalisation (library size normalisation, GC correction, Variance Stabilising Transformation) resulting counts file, not only for visualisation purpose, but also to rely on it during the SV calling framework. To do so</p>
+<div class="highlight"><pre><span></span><code>snakemake<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cores<span class="w"> </span>&lt;N&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--config<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="nv">data_location</span><span class="o">=</span>&lt;INPUT_DATA_FOLDER&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="nv">multistep_normalisation</span><span class="o">=</span>True<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="nv">multistep_normalisation_for_SV_calling</span><span class="o">=</span>True<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--profile<span class="w"> </span>workflow/snakemake_profiles/local/conda_singularity/
+</code></pre></div>
+<h3 id="sctrip-multiplot">scTRIP multiplot</h3>
+<p>From 2.2.2, scTRIP multiplot (from Marco Cosenza) is now compatible with MosaiCatcher. The single requirement is to clone scTRIP multiplot repository (please reach out Marco if you want to access the repository, currently private) inside <code>workflow/scripts/plotting/scTRIP_multiplot</code>.</p>
+<p>By default, scTRIP multiplot is set to false, to enable it, please update the <code>config/config.yaml</code> file or use <code>scTRIP_multiplot=True</code> in the config section of the command line. An example of a scTRIP multiplot is available <a href="/docs/output.md#sctrip-multiplot-marco-cosenza">here</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>multistep_normalisation_for_SV_calling</code> is mutually exclusive with <code>hgsvc_based_normalisation</code></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 - 2024 Thomas Weber
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/friendsofstrandseq/mosaicatcher-pipeline" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "header.autohide"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>
