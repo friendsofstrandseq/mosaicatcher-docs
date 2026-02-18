@@ -3,7 +3,9 @@ site_description: A Snakemake-based workflow for quality control and detection o
 theme:
   name: material
   features:
+    - navigation.tabs
     - navigation.sections
+    - navigation.top
     - header.autohide
 
   palette:
@@ -47,6 +49,8 @@ nav:
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - md_in_html
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.tasklist:

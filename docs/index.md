@@ -1,6 +1,7 @@
 ---
 hide:
   - toc
+  - navigation
 ---
 
 # MosaiCatcher-pipeline
@@ -37,20 +38,63 @@ MosaiCatcher-pipeline is a [Snakemake](https://github.com/snakemake/snakemake)-b
 
 ## Documentation
 
-| | |
-| --- | --- |
-| 📦 **[Installation](installation.md)** | Install Snakemake via Pixi or conda, clone the repository, set up Apptainer |
-| 🚀 **[Quick Start](quickstart.md)** | Run the pipeline on example data with a single command |
-| ▶️ **[Usage](usage.md)** | Local and HPC execution, SLURM profiles, memory handling |
-| ⚙️ **[Parameters](parameters.md)** | Full reference for all configuration options |
-| 🧬 **[Reference Genomes](reference-genomes.md)** | Supported assemblies, assembly-specific containers, mm39 caveats |
-| 🔬 **[Advanced Modes](advanced-modes.md)** | ArbiGent, scNOVA, BreakpointR, multistep normalisation |
-| 📊 **[Outputs](outputs.md)** | Output files, plots, and report formats |
-| 🛠️ **[Troubleshooting](troubleshooting.md)** | Common issues and solutions |
+<div class="grid cards" markdown>
+
+-   📦 **[Installation](installation.md)**
+
+    ---
+
+    Install Snakemake via Pixi or conda, clone the repository, set up Apptainer
+
+-   🚀 **[Quick Start](quickstart.md)**
+
+    ---
+
+    Run the pipeline on example data with a single command
+
+-   ▶️ **[Usage](usage.md)**
+
+    ---
+
+    Local and HPC execution, SLURM profiles, memory handling
+
+-   ⚙️ **[Parameters](parameters.md)**
+
+    ---
+
+    Full reference for all configuration options
+
+-   🧬 **[Reference Genomes](reference-genomes.md)**
+
+    ---
+
+    Supported assemblies, assembly-specific containers, mm39 caveats
+
+-   🔬 **[Advanced Modes](advanced-modes.md)**
+
+    ---
+
+    ArbiGent, scNOVA, BreakpointR, multistep normalisation
+
+-   📊 **[Outputs](outputs.md)**
+
+    ---
+
+    Output files, plots, and report formats
+
+-   🛠️ **[Troubleshooting](troubleshooting.md)**
+
+    ---
+
+    Common issues and solutions
+
+</div>
 
 ---
 
 ## Authors (alphabetical order)
+
+<div style="column-count: 2; column-gap: 2em;" markdown>
 
 - Ashraf Hufash
 - Cosenza Marco
@@ -69,6 +113,8 @@ MosaiCatcher-pipeline is a [Snakemake](https://github.com/snakemake/snakemake)-b
 - Sanders Ashley
 - Van Vliet Alex
 - Weber Thomas (maintainer and current developer)
+
+</div>
 
 ## Citing MosaiCatcher
 
