@@ -1,4 +1,4 @@
-# Parameters
+# ⚙️ Parameters
 
 ## MosaiCatcher arguments
 
@@ -37,7 +37,7 @@ table th:nth-of-type(4) {
 | -------------------- | ------------------------------------------------------------------------------------------------- | -------------- | ------------------- |
 | `data_location`      | Path to parent folder containing samples                                                          | String         | .tests/data_CHR17/  |
 | `samples_to_process` | If multiple plates in the data_location parent folder, specify one or a comma-sep list of samples | None           | "[SampleA,SampleB]" |
-| `publishdir`         | Path to backup location where important data is copied                                            | String         |                     |
+| `publishdir`         | Path to backup location where important data is copied *(deprecated — will be removed in a future version)* | String | |
 
 ### Ashleys-QC upstream pipeline
 
@@ -49,6 +49,7 @@ table th:nth-of-type(4) {
 | `bypass_ashleys`    | Set all cells as high-quality (labels to 1)                                                                                                                    | False          |         |  |
 | `MultiQC`           | Enable or disable MultiQC analysis (includes FastQC, samtools flagstats & idxstats)                                                                            | Boolean        | False   |
 | `hand_selection`    | Enable or disable hand selection through the Jupyter Notebook                                                                                                  | Boolean        | False   |
+| `keep_ashleys_predictions` | Retain ashleys ML prediction files after pipeline completion                            | Boolean        | True    |
 | `split_qc_plot`     | Enable or disable the split of QC plot into individual pages plots                                                                                             | Boolean        | False   |
 | `paired_end`        | Enable or disable the use of paired-end data                                                                                                                   | Boolean        | False   |
 
@@ -56,9 +57,22 @@ table th:nth-of-type(4) {
 
 | Parameter                | Comment                             | Default (options)                            |
 | ------------------------ | ----------------------------------- | -------------------------------------------- |
-| `reference`              | Reference genome                    | hg38 (hg19, T2T, mm10)                       |
+| `reference`              | Reference genome                    | hg38 (hg19, T2T, mm10, mm39)                 |
+| `reference_base_dir`     | Base directory for reference files (allows multi-user sharing on HPC) | /g/korbel/shared/genomes |
 | `chromosomes`            | List of chromosomes to be processed | Human: chr[1..22,X,Y], Mouse: chr[1..20,X,Y] |
 | `chromosomes_to_exclude` | List of chromosomes to exclude      | []                                           |
+
+!!! note "Reference genome support"
+
+    - **Fully supported**: hg38, hg19, T2T, mm10, mm39
+    - **Framework-ready** (normalization files pending): canfam3, canfam4
+    - See [Reference Genomes](reference-genomes.md) for assembly-specific notes and caveats.
+
+### BWA Index options
+
+| Parameter                   | Comment                                                                                  | Default |
+| --------------------------- | ---------------------------------------------------------------------------------------- | ------- |
+| `download_prebuilt_indexes` | Download pre-built BWA indexes from AWS iGenomes instead of building them locally        | False   |
 
 ### Counts configuration
 
@@ -73,6 +87,7 @@ table th:nth-of-type(4) {
 | Parameter                 | Comment                                                                                                                                       | Default |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | `multistep_normalisation` | Allow to perform [multistep normalisation](/docs/usage.md#multistep-normalisation) including GC correction for visualization (Marco Cosenza). | False   |
+| `ploidy`                  | Enable ploidy estimation module to detect haploid chromosomes / segments                                                                      | True    |
 | `breakpointR`             | Enable breakpointR module to compute breakpoints on Strand-Seq data (David Porubsky).                                                         | False   |
 
 ### Targeted execution
@@ -133,85 +148,3 @@ _Location_: workflow/snakemake_profiles/
 | HPC/slurm_generic (to modify)           | /       | X     |             | X   |       |
 | HPC/slurm_EMBL (optimised for EMBL HPC) | /       | X     |             | X   |       |
 
-## Snakemake arguments
-
-Here are presented some essential snakemake options that could help you.
-
-```
---cores, -c
-```
-
-Use at most N CPU cores/jobs in parallel. If N is omitted or ‘all’, the limit is set to the number of available CPU cores. In case of cluster/cloud execution, this argument sets the number of total cores used over all jobs (made available to rules via workflow.cores).
-
-```
---printshellcmds, -p
-```
-
-Recommended to print out the shell commands that will be executed.
-
-```
---use-conda
-```
-
-If defined in the rule, run job in a conda environment. If this flag is not set, the conda directive is ignored and use the current environment (and path system) to execute the command.
-
-```
---conda-frontend [mamba|conda]
-```
-
-Choose the conda frontend for installing environments. Mamba is much faster and highly recommended but could not be installed by default on your system. Default: “conda”
-
-```
---use-singularity
-```
-
-If defined in the rule, run job within a singularity container. If this flag is not set, the singularity directive is ignored.
-
-```
---singularity-args "-B /mounting_point:/mounting_point"
-```
-
-Pass additional args to singularity. `-B` stands for binding point between the host and the container.
-
-```
---dryrun, -n
-```
-
-Do not execute anything, and display what would be done. If you have a very large workflow, use –dry-run –quiet to just print a summary of the DAG of jobs.
-
-```
---rerun-incomplete, --ri
-```
-
-Re-run all jobs the output of which is recognized as incomplete.
-
-```
---keep-going, -k
-```
-
-Go on with independent jobs if a job fails.
-
-```
--T, --retries, --restart-times
-```
-
-Number of times to restart failing jobs (defaults to 0).
-
-```
---forceall, -F
-```
-
-Force the execution of the selected (or the first) rule and all rules it is dependent on regardless of already created output.
-
----
-
-**ℹ️ Note**
-
-Currently, the binding command needs to correspond to the mounting point of your system (i.e: "/tmp:/tmp").
-On seneca for example (EMBL), use `"/g:/g"` if you are working on `/g/korbel[2]` or `"/scratch:/scratch"` if you plan to work on `scratch`.
-
----
-
-Obviously, all other [snakemake CLI options](https://snakemake.readthedocs.io/en/stable/executing/cli.html) can also be used.
-
----

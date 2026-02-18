@@ -9,7 +9,16 @@ theme:
   palette:
     - scheme: default
       primary: white
-      accent: white
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      primary: grey
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
 
   icon:
     repo: fontawesome/brands/github
@@ -20,10 +29,20 @@ repo_name: friendsofstrandseq/mosaicatcher-pipeline
 nav:
   - Home: index.md
   - Installation: installation.md
-  - Usage: usage.md
-  - Parameters: parameters.md
-  - Reproduce publication results: publication.md
-  - Outputs: outputs.md
+  - Getting Started:
+      - Quick Start: quickstart.md
+      - Input Data Formats: input-data.md
+  - Running the Pipeline:
+      - Usage: usage.md
+      - Parameters: parameters.md
+      - Advanced Modes: advanced-modes.md
+      - EMBL HPC: embl.md
+  - Reference:
+      - Pipeline Outputs: outputs.md
+      - Reference Genomes: reference-genomes.md
+      - Reproduce publication results: publication.md
+      - Development Roadmap: roadmap.md
+      - Troubleshooting: troubleshooting.md
   - Contributing: contributing.md
 
 markdown_extensions:
@@ -33,7 +52,7 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 
-copyright: Copyright &copy; 2022 - 2024 Thomas Weber
+copyright: Copyright &copy; 2022 - 2026 Thomas Weber
 
 extra:
   social:

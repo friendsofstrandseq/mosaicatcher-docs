@@ -1,4 +1,4 @@
-# Outputs
+# 📊 Outputs
 
 The files listed below will be created in the selected results directory (`output_location` parameter). All paths are relative to the top-level results directory.
 
