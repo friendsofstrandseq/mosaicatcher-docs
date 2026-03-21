@@ -2,17 +2,17 @@
 
 ---
 
-## 2.5.0 — *unreleased*
+## 2.5.0 — March 2026
 
 ### 🐳 Docker images
 
-| Assembly | Image |
-|----------|-------|
-| hg38 | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg38-2.5.0` |
-| hg19 | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg19-2.5.0` |
-| T2T | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:T2T-2.5.0` |
-| mm10 | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm10-2.5.0` |
-| mm39 | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm39-2.5.0` |
+| Assembly | Image                                                         |
+| -------- | ------------------------------------------------------------- |
+| hg38     | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg38-2.5.0` |
+| hg19     | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg19-2.5.0` |
+| T2T      | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:T2T-2.5.0`  |
+| mm10     | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm10-2.5.0` |
+| mm39     | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm39-2.5.0` |
 
 ### 📋 Summary
 
@@ -35,13 +35,13 @@ This release focuses on pipeline robustness: corrupted BAMs are now caught immed
 ### ⚙️ Misc
 
 - **Right-sized SLURM resources** (based on empirical data from 9,700+ jobs across 22 runs):
-    - `create_haplotag_table` memory: 8 GB → 12 GB base (p95 observed: 9.7 GB, max: 17.4 GB)
-    - `mosaiClassifier_calc_probs` memory: 8 GB → 2.5 GB base (max observed: 2.8 GB)
-    - `run_strandphaser_per_chrom` memory: 8 GB → 4 GB base; runtime: 600 → 120 min
-    - `call_SNVs_bcftools_chrom` memory: 8 GB → 1 GB base; runtime: 180 → 30 min
-    - `mosaiClassifier_calc_probs` runtime: 180 → 60 min
-    - `ashleys_generate_features` threads: 64 → 12; runtime: 3600 → 60 min
-    - `ploidy_estimation` threads: 48 → 24
+  - `create_haplotag_table` memory: 8 GB → 12 GB base (p95 observed: 9.7 GB, max: 17.4 GB)
+  - `mosaiClassifier_calc_probs` memory: 8 GB → 2.5 GB base (max observed: 2.8 GB)
+  - `run_strandphaser_per_chrom` memory: 8 GB → 4 GB base; runtime: 600 → 120 min
+  - `call_SNVs_bcftools_chrom` memory: 8 GB → 1 GB base; runtime: 180 → 30 min
+  - `mosaiClassifier_calc_probs` runtime: 180 → 60 min
+  - `ashleys_generate_features` threads: 64 → 12; runtime: 3600 → 60 min
+  - `ploidy_estimation` threads: 48 → 24
 
 ---
 
@@ -51,13 +51,13 @@ This release focuses on pipeline robustness: corrupted BAMs are now caught immed
 
 Assembly-specific images introduced in this release. Each image embeds the matching BSgenome R package:
 
-| Assembly | Image |
-|----------|-------|
-| hg38 | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg38-2.4.0` |
-| hg19 | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg19-2.4.0` |
-| T2T | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:T2T-2.4.0` |
-| mm10 | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm10-2.4.0` |
-| mm39 | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm39-2.4.0` |
+| Assembly | Image                                                         |
+| -------- | ------------------------------------------------------------- |
+| hg38     | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg38-2.4.0` |
+| hg19     | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg19-2.4.0` |
+| T2T      | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:T2T-2.4.0`  |
+| mm10     | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm10-2.4.0` |
+| mm39     | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm39-2.4.0` |
 
 ### 📋 Summary
 
