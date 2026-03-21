@@ -45,6 +45,7 @@ nav:
       - Reproduce publication results: publication.md
       - Development Roadmap: roadmap.md
       - Troubleshooting: troubleshooting.md
+  - Changelog: changelog.md
   - Contributing: contributing.md
 
 markdown_extensions:
