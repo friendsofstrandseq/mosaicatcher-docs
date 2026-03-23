@@ -31,11 +31,11 @@ MosaiCatcher provides pre-built container images on GitHub Container Registry (G
 
 | Reference Genome | Container URI |
 | ---------------- | ------------- |
-| hg38 (GRCh38)   | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg38-v2.4.0` |
-| hg19 (GRCh37)   | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg19-v2.4.0` |
-| T2T (CHM13)     | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:T2T-v2.4.0` |
-| mm10             | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm10-v2.4.0` |
-| mm39             | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm39-v2.4.0` |
+| hg38 (GRCh38)   | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg38-v2.5.0` |
+| hg19 (GRCh37)   | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg19-v2.5.0` |
+| T2T (CHM13)     | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:T2T-v2.5.0` |
+| mm10             | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm10-v2.5.0` |
+| mm39             | `ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm39-v2.5.0` |
 
 !!! note "Why assembly-specific containers?"
 
@@ -90,12 +90,7 @@ With Pixi, these are managed automatically via `pixi.toml`.
 
 !!! note "EMBL users"
 
-    For module-based systems, check available Snakemake modules:
-
-    ```
-    module avail snakemake
-    module load snakemake/<version>
-    ```
+    See the [EMBL HPC Guide](embl.md) for the recommended Snakemake version and SLURM+Apptainer setup.
 
 ### 2. Clone the repository and its submodules
 
@@ -115,16 +110,16 @@ git submodule update --init --remote --force --recursive
 
 If you already use a previous version of mosaicatcher-pipeline, follow these steps:
 
-1. Update all origin/<branch> refs to latest:
+1. Fetch all tags and remote refs:
 
 ```bash
-git fetch --all
+git fetch --all --tags
 ```
 
-2. Jump to a new version & pull code:
+2. Check out the target version tag (this puts you in detached HEAD — expected for a release):
 
 ```bash
-git checkout <VERSION> && git pull
+git checkout v<VERSION>
 ```
 
 3. Update git submodules:
@@ -133,4 +128,4 @@ git checkout <VERSION> && git pull
 git submodule update --init --remote --force --recursive
 ```
 
-4. **Check Snakemake compatibility** for the version you're updating to (see warning above)
+4. **Check Snakemake compatibility** for the version you're updating to (see warning above).
