@@ -779,6 +779,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#required-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required software
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#shared-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -794,6 +816,28 @@
     <span class="md-ellipsis">
       
         Shared container cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apptainer-bind-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apptainer bind paths
       
     </span>
   </a>
@@ -836,28 +880,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#log-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Log management
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#apptainer-bind-paths" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Apptainer bind paths
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1157,6 +1179,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#required-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required software
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#shared-references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1172,6 +1216,28 @@
     <span class="md-ellipsis">
       
         Shared container cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apptainer-bind-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apptainer bind paths
       
     </span>
   </a>
@@ -1217,28 +1283,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#log-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Log management
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#apptainer-bind-paths" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Apptainer bind paths
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1261,20 +1305,62 @@
 
 <h1 id="embl-hpc-guide">🇪🇺 EMBL HPC Guide</h1>
 <p>This page covers EMBL-specific optimizations for running MosaiCatcher on the EMBL HPC cluster (seneca/raven). The dedicated profile at <code>workflow/snakemake_profiles/mosaicatcher-pipeline/v9/HPC/slurm_EMBL_apptainer/</code> pre-configures all of the settings below.</p>
+<hr />
+<h2 id="required-software">Required software</h2>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>snakemake</code></td>
+<td><strong>9.13.7</strong></td>
+<td>Preferred version for SLURM + Apptainer; install via conda/pixi</td>
+</tr>
+<tr>
+<td><code>snakemake-executor-plugin-slurm</code></td>
+<td>latest</td>
+<td>Required for SLURM job submission</td>
+</tr>
+<tr>
+<td><code>snakemake-storage-plugin-http</code></td>
+<td>latest</td>
+<td>Required for downloading reference files over HTTP</td>
+</tr>
+</tbody>
+</table>
+<p>Install into a dedicated environment:</p>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>snakemake-v9<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span><span class="nv">snakemake</span><span class="o">=</span><span class="m">9</span>.13.7<span class="w"> </span>snakemake-executor-plugin-slurm<span class="w"> </span>snakemake-storage-plugin-http
+conda<span class="w"> </span>activate<span class="w"> </span>snakemake-v9
+</code></pre></div>
+<p>Or with pixi (project-level):</p>
+<div class="highlight"><pre><span></span><code>pixi<span class="w"> </span>add<span class="w"> </span><span class="nv">snakemake</span><span class="o">=</span><span class="m">9</span>.13.7<span class="w"> </span>snakemake-executor-plugin-slurm<span class="w"> </span>snakemake-storage-plugin-http
+</code></pre></div>
+<hr />
+<h2 id="basic-usage">Basic usage</h2>
 <div class="highlight"><pre><span></span><code>snakemake<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--config<span class="w"> </span><span class="nv">data_location</span><span class="o">=</span>&lt;DATA_FOLDER&gt;<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--profile<span class="w"> </span>workflow/snakemake_profiles/mosaicatcher-pipeline/v9/HPC/slurm_EMBL_apptainer/
+<span class="w">    </span>--profile<span class="w"> </span>workflow/snakemake_profiles/mosaicatcher-pipeline/v9/HPC/slurm_EMBL_apptainer/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--config<span class="w"> </span><span class="nv">data_location</span><span class="o">=</span>&lt;DATA_FOLDER&gt;<span class="w"> </span><span class="nv">reference</span><span class="o">=</span>hg38<span class="w"> </span><span class="nv">reference_base_dir</span><span class="o">=</span>/scratch_cached/korbel/references
 </code></pre></div>
 <hr />
 <h2 id="shared-references">Shared references</h2>
 <p>Reference genomes and BWA indexes are pre-built and shared across the Korbel group at:</p>
 <div class="highlight"><pre><span></span><code>/scratch_cached/korbel/references/
 </code></pre></div>
-<p>The profile sets <code>reference_base_dir</code> automatically to this path. No manual download or index building is needed — just set <code>reference</code> in your config and the pipeline resolves the correct files.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># config/config.yaml</span>
-<span class="nt">reference</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hg38</span><span class="w"> </span><span class="c1"># indexes are read from /scratch_cached/korbel/references/hg38/</span>
-</code></pre></div>
+<p>No manual download or index building is needed — the pipeline resolves the correct FASTA and BWA index files automatically.</p>
 <p><code>/scratch_cached/</code> is a fast-access cached filesystem backed by <code>/scratch/</code>, avoiding repeated transfers from the slow shared <code>/g/</code> filesystem.</p>
+<div class="admonition warning">
+<p class="admonition-title">Always pass <code>reference_base_dir</code> explicitly</p>
+<p>Due to a <a href="https://github.com/snakemake/snakemake/issues/3429">known Snakemake v9 bug (#3429)</a>,
+the profile's <code>config:</code> section is silently dropped whenever any <code>--config</code> flag is passed on
+the CLI. Until this is fixed upstream, always include <code>reference_base_dir</code> in every run:</p>
+<div class="highlight"><pre><span></span><code>--config<span class="w"> </span>...<span class="w"> </span><span class="nv">reference_base_dir</span><span class="o">=</span>/scratch_cached/korbel/references
+</code></pre></div>
+</div>
 <hr />
 <h2 id="shared-container-cache">Shared container cache</h2>
 <p>Apptainer images are cached at a shared group location to avoid redundant pulls:</p>
@@ -1291,6 +1377,22 @@
 </code></pre></div>
 <p>This creates the directories, sets <code>chmod 2775</code>, and applies default ACLs via <code>setfacl</code>.</p>
 </div>
+<hr />
+<h2 id="log-management">Log management</h2>
+<p>SLURM logs are written to a per-user scratch directory:</p>
+<div class="highlight"><pre><span></span><code>/scratch/$USER/mosaicatcher_logs/slurm/
+</code></pre></div>
+<p>Logs for successful jobs are deleted automatically. Logs older than 30 days are pruned. This keeps scratch usage manageable across users.</p>
+<p>A resource efficiency report is generated at:</p>
+<div class="highlight"><pre><span></span><code>/scratch/$USER/mosaicatcher_logs/slurm_efficiency_report.txt
+</code></pre></div>
+<p>Jobs using less than 80% of their requested memory or runtime are flagged, helping tune resource requests over time.</p>
+<hr />
+<h2 id="apptainer-bind-paths">Apptainer bind paths</h2>
+<p>The profile binds all relevant EMBL filesystems into the container automatically:</p>
+<div class="highlight"><pre><span></span><code>-B /g,/scratch,/scratch_cached,/tmp
+</code></pre></div>
+<p>No manual <code>--apptainer-args</code> override is needed when using the EMBL profile.</p>
 <hr />
 <h2 id="job-grouping">Job grouping</h2>
 <p>The EMBL profile enables two Snakemake job-grouping strategies to reduce SLURM scheduler overhead and improve throughput when processing many cells.</p>
@@ -1323,22 +1425,6 @@ index    → SLURM job 4        │     ↓                  │
                               └────────────────────────┘
 </code></pre></div>
 <p>Configured via <code>--groups</code> and <code>--group-components</code> in the profile. Eliminates intermediate queue waits for steps where the bottleneck is data dependency, not compute.</p>
-<hr />
-<h2 id="log-management">Log management</h2>
-<p>SLURM logs are written to a per-user scratch directory:</p>
-<div class="highlight"><pre><span></span><code>/scratch/$USER/mosaicatcher_logs/slurm/
-</code></pre></div>
-<p>Logs for successful jobs are deleted automatically. Logs older than 30 days are pruned. This keeps scratch usage manageable across users.</p>
-<p>A resource efficiency report is generated at:</p>
-<div class="highlight"><pre><span></span><code>/scratch/$USER/mosaicatcher_logs/slurm_efficiency_report.txt
-</code></pre></div>
-<p>Jobs using less than 80% of their requested memory or runtime are flagged, helping tune resource requests over time.</p>
-<hr />
-<h2 id="apptainer-bind-paths">Apptainer bind paths</h2>
-<p>The profile binds all relevant EMBL filesystems into the container automatically:</p>
-<div class="highlight"><pre><span></span><code>-B /g,/scratch,/scratch_cached,/tmp
-</code></pre></div>
-<p>No manual <code>--apptainer-args</code> override is needed when using the EMBL profile.</p>
 
 
 

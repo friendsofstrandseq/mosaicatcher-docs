@@ -1338,23 +1338,23 @@
 <tbody>
 <tr>
 <td>hg38 (GRCh38)</td>
-<td><code>ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg38-v2.4.0</code></td>
+<td><code>ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg38-v2.5.0</code></td>
 </tr>
 <tr>
 <td>hg19 (GRCh37)</td>
-<td><code>ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg19-v2.4.0</code></td>
+<td><code>ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:hg19-v2.5.0</code></td>
 </tr>
 <tr>
 <td>T2T (CHM13)</td>
-<td><code>ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:T2T-v2.4.0</code></td>
+<td><code>ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:T2T-v2.5.0</code></td>
 </tr>
 <tr>
 <td>mm10</td>
-<td><code>ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm10-v2.4.0</code></td>
+<td><code>ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm10-v2.5.0</code></td>
 </tr>
 <tr>
 <td>mm39</td>
-<td><code>ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm39-v2.4.0</code></td>
+<td><code>ghcr.io/friendsofstrandseq/mosaicatcher-pipeline:mm39-v2.5.0</code></td>
 </tr>
 </tbody>
 </table>
@@ -1396,10 +1396,7 @@ pip<span class="w"> </span>install<span class="w"> </span>snakemake-executor-plu
 <p>With Pixi, these are managed automatically via <code>pixi.toml</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">EMBL users</p>
-<p>For module-based systems, check available Snakemake modules:</p>
-<div class="highlight"><pre><span></span><code>module avail snakemake
-module load snakemake/&lt;version&gt;
-</code></pre></div>
+<p>See the <a href="../embl/">EMBL HPC Guide</a> for the recommended Snakemake version and SLURM+Apptainer setup.</p>
 </div>
 <h3 id="2-clone-the-repository-and-its-submodules">2. Clone the repository and its submodules</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Clone the repository and its submodules</span>
@@ -1411,14 +1408,14 @@ git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w
 <h2 id="pipeline-update-procedure">Pipeline update procedure</h2>
 <p>If you already use a previous version of mosaicatcher-pipeline, follow these steps:</p>
 <ol>
-<li>Update all origin/<branch> refs to latest:</li>
+<li>Fetch all tags and remote refs:</li>
 </ol>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>fetch<span class="w"> </span>--all
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>fetch<span class="w"> </span>--all<span class="w"> </span>--tags
 </code></pre></div>
 <ol>
-<li>Jump to a new version &amp; pull code:</li>
+<li>Check out the target version tag (this puts you in detached HEAD — expected for a release):</li>
 </ol>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>&lt;VERSION&gt;<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>pull
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>v&lt;VERSION&gt;
 </code></pre></div>
 <ol>
 <li>Update git submodules:</li>
@@ -1426,7 +1423,7 @@ git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--remote<span class="w"> </span>--force<span class="w"> </span>--recursive
 </code></pre></div>
 <ol>
-<li><strong>Check Snakemake compatibility</strong> for the version you're updating to (see warning above)</li>
+<li><strong>Check Snakemake compatibility</strong> for the version you're updating to (see warning above).</li>
 </ol>
 
 
