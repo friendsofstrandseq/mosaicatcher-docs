@@ -2,10 +2,37 @@
 
 This page covers EMBL-specific optimizations for running MosaiCatcher on the EMBL HPC cluster (seneca/raven). The dedicated profile at `workflow/snakemake_profiles/mosaicatcher-pipeline/v9/HPC/slurm_EMBL_apptainer/` pre-configures all of the settings below.
 
+---
+
+## Required software
+
+| Package | Version | Notes |
+|---|---|---|
+| `snakemake` | **9.13.7** | Preferred version for SLURM + Apptainer; install via conda/pixi |
+| `snakemake-executor-plugin-slurm` | latest | Required for SLURM job submission |
+| `snakemake-storage-plugin-http` | latest | Required for downloading reference files over HTTP |
+
+Install into a dedicated environment:
+
+```bash
+conda create -n snakemake-v9 -c conda-forge -c bioconda snakemake=9.13.7 snakemake-executor-plugin-slurm snakemake-storage-plugin-http
+conda activate snakemake-v9
+```
+
+Or with pixi (project-level):
+
+```bash
+pixi add snakemake=9.13.7 snakemake-executor-plugin-slurm snakemake-storage-plugin-http
+```
+
+---
+
+## Basic usage
+
 ```bash
 snakemake \
-    --config data_location=<DATA_FOLDER> \
-    --profile workflow/snakemake_profiles/mosaicatcher-pipeline/v9/HPC/slurm_EMBL_apptainer/
+    --profile workflow/snakemake_profiles/mosaicatcher-pipeline/v9/HPC/slurm_EMBL_apptainer/ \
+    --config data_location=<DATA_FOLDER> reference=hg38 reference_base_dir=/scratch_cached/korbel/references
 ```
 
 ---
@@ -18,14 +45,19 @@ Reference genomes and BWA indexes are pre-built and shared across the Korbel gro
 /scratch_cached/korbel/references/
 ```
 
-The profile sets `reference_base_dir` automatically to this path. No manual download or index building is needed — just set `reference` in your config and the pipeline resolves the correct files.
-
-```yaml
-# config/config.yaml
-reference: hg38 # indexes are read from /scratch_cached/korbel/references/hg38/
-```
+No manual download or index building is needed — the pipeline resolves the correct FASTA and BWA index files automatically.
 
 `/scratch_cached/` is a fast-access cached filesystem backed by `/scratch/`, avoiding repeated transfers from the slow shared `/g/` filesystem.
+
+!!! warning "Always pass `reference_base_dir` explicitly"
+
+    Due to a [known Snakemake v9 bug (#3429)](https://github.com/snakemake/snakemake/issues/3429),
+    the profile's `config:` section is silently dropped whenever any `--config` flag is passed on
+    the CLI. Until this is fixed upstream, always include `reference_base_dir` in every run:
+
+    ```bash
+    --config ... reference_base_dir=/scratch_cached/korbel/references
+    ```
 
 ---
 
@@ -54,6 +86,38 @@ Conda environments are similarly shared at:
     ```
 
     This creates the directories, sets `chmod 2775`, and applies default ACLs via `setfacl`.
+
+---
+
+## Log management
+
+SLURM logs are written to a per-user scratch directory:
+
+```
+/scratch/$USER/mosaicatcher_logs/slurm/
+```
+
+Logs for successful jobs are deleted automatically. Logs older than 30 days are pruned. This keeps scratch usage manageable across users.
+
+A resource efficiency report is generated at:
+
+```
+/scratch/$USER/mosaicatcher_logs/slurm_efficiency_report.txt
+```
+
+Jobs using less than 80% of their requested memory or runtime are flagged, helping tune resource requests over time.
+
+---
+
+## Apptainer bind paths
+
+The profile binds all relevant EMBL filesystems into the container automatically:
+
+```
+-B /g,/scratch,/scratch_cached,/tmp
+```
+
+No manual `--apptainer-args` override is needed when using the EMBL profile.
 
 ---
 
@@ -99,35 +163,3 @@ index    → SLURM job 4        │     ↓                  │
 ```
 
 Configured via `--groups` and `--group-components` in the profile. Eliminates intermediate queue waits for steps where the bottleneck is data dependency, not compute.
-
----
-
-## Log management
-
-SLURM logs are written to a per-user scratch directory:
-
-```
-/scratch/$USER/mosaicatcher_logs/slurm/
-```
-
-Logs for successful jobs are deleted automatically. Logs older than 30 days are pruned. This keeps scratch usage manageable across users.
-
-A resource efficiency report is generated at:
-
-```
-/scratch/$USER/mosaicatcher_logs/slurm_efficiency_report.txt
-```
-
-Jobs using less than 80% of their requested memory or runtime are flagged, helping tune resource requests over time.
-
----
-
-## Apptainer bind paths
-
-The profile binds all relevant EMBL filesystems into the container automatically:
-
-```
--B /g,/scratch,/scratch_cached,/tmp
-```
-
-No manual `--apptainer-args` override is needed when using the EMBL profile.
