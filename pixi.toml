@@ -1,0 +1,24 @@
+[workspace]
+name = "mosaicatcher-docs"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64"]
+
+[dependencies]
+mkdocs = ">=1.5"
+mkdocs-material = ">=9.0"
+mike = ">=2.0"
+python = ">=3.8"
+watchdog = "*"
+
+[tasks]
+# Build static documentation site
+build = "mkdocs build"
+
+# Serve documentation locally with dirty reload (faster incremental builds)
+serve = "mkdocs serve -a 0.0.0.0:8000 --dirtyreload"
+
+# Deploy to GitHub Pages — reads version from VERSION file, sets as latest
+deploy = "mike deploy --push --update-aliases $(cat VERSION) latest"
+
+# Clean build artifacts
+clean = "rm -rf site && mkdocs clean"
